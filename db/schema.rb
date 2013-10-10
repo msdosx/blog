@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010110836) do
+ActiveRecord::Schema.define(version: 20131010111045) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -23,7 +23,15 @@ ActiveRecord::Schema.define(version: 20131010110836) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "roles", force: true do |t|
+    t.string "name"
+  end
+
   create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "soname"
+    t.string   "hobby"
+    t.string   "nickname",               default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -40,5 +48,13 @@ ActiveRecord::Schema.define(version: 20131010110836) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "users_roles", force: true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["role_id"], name: "index_users_roles_on_role_id"
+  add_index "users_roles", ["user_id"], name: "index_users_roles_on_user_id"
 
 end
