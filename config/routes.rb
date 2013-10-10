@@ -58,4 +58,12 @@ Blog::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :posts do
+    resources :comments
+  end
+  resources :users
+
+  devise_scope :user do
+    root :to => "devise/sessions#new"
+  end
 end
