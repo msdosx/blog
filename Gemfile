@@ -43,6 +43,8 @@ gem "haml-rails"
 gem 'devise'
 gem 'cancan'
 
+gem "less-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

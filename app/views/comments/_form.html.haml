@@ -1,19 +1,16 @@
-= form_for @comment do |f|
-  - if @comment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
-      %ul
-        - @comment.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :post
-    = f.text_field :post
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions
-    = f.submit 'Save'
+= form_for @comment, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :content, :class => 'control-label'
+    .controls
+      = f.text_field :content, :class => 'text_field'
+  .control-group
+    = f.label :post_id, :class => 'control-label'
+    .controls
+      = f.text_field :post_id, :class => 'text_field'
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = f.text_field :user_id, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), comments_path, :class => 'btn'
